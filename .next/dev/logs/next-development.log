@@ -1,11 +1,422 @@
-[00:00:16.240] Server  LOG     ✓ Ready in 11.7s
-[00:00:37.262] Server  LOG     ○ Compiling / ...
-[00:01:10.967] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:01:11.071] Browser WARN    Image with src "http://localhost:3000/next.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:01:11.073] Browser WARN    Image with src "http://localhost:3000/vercel.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:01:14.177] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:01:14.348] Browser WARN    Image with src "http://localhost:3000/next.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:01:14.348] Browser WARN    Image with src "http://localhost:3000/vercel.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:01:15.197] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:01:15.570] Browser WARN    Image with src "http://localhost:3000/next.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:01:15.570] Browser WARN    Image with src "http://localhost:3000/vercel.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:00:07.980] Server  LOG     ○ Compiling proxy ...
+[00:00:09.737] Server  LOG     ✓ Ready in 8.1s
+[00:00:31.660] Server  LOG     ○ Compiling / ...
+[00:01:11.035] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:11.121] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <RenderFromTemplateContext>
+      <ScrollAndFocusHandler segmentPath={[...]}>
+        <InnerScrollAndFocusHandler segmentPath={[...]} focusAndScrollRef={{apply:false, ...}}>
+          <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+            <LoadingBoundary name="/" loading={null}>
+              <HTTPAccessFallbackBoundary notFound={<SegmentViewNode>} forbidden={undefined} unauthorized={undefined}>
+                <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<SegmentViewNode>} forbidden={undefined} ...>
+                  <RedirectBoundary>
+                    <RedirectErrorBoundary router={{...}}>
+                      <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} ...>
+                        <SegmentViewNode type="page" pagePath="page.tsx">
+                          <SegmentTrieNode>
+                          <HomePage>
+                            <div className="min-h-scre...">
+                              <Navbar>
+                              <section>
+                              <NeedsList besoins={[...]} isLoggedIn={true} currentUserId="staGFjXmRY..." ...>
+                                <section className="bg-card bo...">
+                                  <div className="max-w-7xl ...">
+                                    <div className="flex flex-...">
+                                      ...
+                                        <Primitive.div.Slot ref={function}>
+                                          <Primitive.div.SlotClone ref={function}>
+                                            <Primitive.button type="button" role="combobox" aria-controls="radix-_R_1..." ...>
+                                              <button
+                                                type="button"
+                                                role="combobox"
+                                                aria-controls="radix-_R_1binelb_"
+                                                aria-expanded={false}
+                                                aria-required={undefined}
+                                                aria-autocomplete="none"
+                                                dir="ltr"
+                                                data-state="closed"
+                                                disabled={false}
+                                                data-disabled={undefined}
+                                                data-placeholder=""
+                                                data-slot="select-trigger"
+                                                data-size="default"
+                                                className={"border-input data-[placeholder]:text-muted-foreground [&_..."}
+                                                onClick={function handleEvent}
+                                                onPointerDown={function handleEvent}
+                                                onKeyDown={function handleEvent}
+                                                ref={function}
+-                                               data-cursor-ref="ref-j5ghyhy21q"
+                                              >
+                                      <div
+                                        className="flex-1"
+-                                       data-cursor-ref="ref-g5gff9jww9b"
+                                      >
+                                        ...
+                                          <Primitive.div.Slot ref={function}>
+                                            <Primitive.div.SlotClone ref={function}>
+                                              <Primitive.button type="button" role="combobox" ...>
+                                                <button
+                                                  type="button"
+                                                  role="combobox"
+                                                  aria-controls="radix-_R_2binelb_"
+                                                  aria-expanded={false}
+                                                  aria-required={undefined}
+                                                  aria-autocomplete="none"
+                                                  dir="ltr"
+                                                  data-state="closed"
+                                                  disabled={false}
+                                                  data-disabled={undefined}
+                                                  data-placeholder=""
+                                                  data-slot="select-trigger"
+                                                  data-size="default"
+                                                  className={"border-input data-[placeholder]:text-muted-foreground [..."}
+                                                  onClick={function handleEvent}
+                                                  onPointerDown={function handleEvent}
+                                                  onKeyDown={function handleEvent}
+                                                  ref={function}
+-                                                 data-cursor-ref="ref-ge1q78p909p"
+                                                >
+                                      <Button className="h-12 px-6 ..." onClick={function resetFilters}>
+                                        <button
+                                          data-slot="button"
+                                          className={"inline-flex items-center justify-center gap-2 whitespace-nowrap..."}
+                                          onClick={function resetFilters}
+-                                         data-cursor-ref="ref-b7d32d2qxra"
+                                        >
+                                <section
+                                  id="besoins"
+                                  className="flex-1 py-12"
+-                                 data-cursor-ref="ref-w3ysvtmrrh"
+                                >
+                                  <div
+                                    className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+-                                   data-cursor-ref="ref-x7k8fyb1pfq"
+                                  >
+                                    <h2
+                                      className="text-2xl font-bold text-foreground mb-8"
+-                                     data-cursor-ref="ref-rs9wow9vk0n"
+                                    >
++                                     Besoins de la communauté
+                                    <div
+                                      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+-                                     data-cursor-ref="ref-rwaosoj7ou"
+                                    >
+                                      <BesoinCard id="f4a7b7b1-7..." title="besoin test" description="lkjxcfvghj..." ...>
+                                        <Card className="group over...">
+                                          <div
+                                            data-slot="card"
+                                            className="text-card-foreground flex flex-col gap-6 rounded-xl border py-6..."
+-                                           data-cursor-ref="ref-jwujy6fo1no"
+                                          >
+                                            <CardContent className="p-5">
+                                              <div
+                                                data-slot="card-content"
+                                                className="p-5"
+-                                               data-cursor-ref="ref-izi1nirg1ip"
+                                              >
+                                                <LinkComponent href="/besoins/f...">
+                                                  <a
+                                                    ref={function}
+                                                    onClick={function onClick}
+                                                    onMouseEnter={function onMouseEnter}
+                                                    onTouchStart={function onTouchStart}
+                                                    href="/besoins/f4a7b7b1-78fa-4eff-8952-1469a90d2eb8"
+-                                                   data-cursor-ref="ref-cpfx4apjg2i"
+                                                  >
+                                                    <h3
+                                                      className="text-lg font-semibold text-foreground mb-2 line-clamp..."
+-                                                     data-cursor-ref="ref-wk0hm0j8gda"
+                                                    >
++                                                     besoin test
+                                                <p
+                                                  className="text-muted-foreground text-sm mb-4 line-clamp-2"
+-                                                 data-cursor-ref="ref-i2uqmatwzv8"
+                                                >
++                                                 lkjxcfvghjklzdefbvbvjnenijf njdnfhuahf jcddfhuo
+                                                ...
+                                            <CardFooter className="px-5 pb-5 ...">
+                                              <div
+                                                data-slot="card-footer"
+                                                className="items-center [.border-t]:pt-6 px-5 pb-5 pt-0 flex gap-3"
+-                                               data-cursor-ref="ref-pudoixs7m7l"
+                                              >
+                                                <Button className="flex-1 bg-..." disabled={true}>
+                                                  <button
+                                                    data-slot="button"
+                                                    className={"inline-flex items-center justify-center gap-2 whitesp..."}
+                                                    disabled={true}
+-                                                   data-cursor-ref="ref-c0ytk2t9uvj"
+                                                  >
++                                                   Besoin résolu
+                                                <WhatsAppButton phoneNumber="0666158966">
+                                                  <Button asChild={true} className="bg-[#25D36..." variant="default">
+                                                    <Slot.Slot data-slot="button" className={"inline-f..."}>
+                                                      <Slot.SlotClone data-slot="button" className={"inline-f..."} ...>
+                                                        <a
+                                                          href={"https://wa.me/0666158966?text=Bonjour%2C%20je%20souh..."}
+                                                          target="_blank"
+                                                          rel="noopener noreferrer"
+                                                          data-slot="button"
+                                                          className={"inline-flex items-center justify-center gap-2 w..."}
+                                                          ref={null}
+-                                                         data-cursor-ref="ref-bzp4yvc09ff"
+                                                        >
+                              <Footer>
+                                <footer
+                                  className="bg-card border-t border-border mt-auto"
+-                                 data-cursor-ref="ref-uc1a0zu0b4r"
+                                >
+                                  <div
+                                    className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"
+-                                   data-cursor-ref="ref-dvfb76fvjs"
+                                  >
+                                    <div
+                                      className="flex flex-col md:flex-row items-center justify-between gap-6"
+-                                     data-cursor-ref="ref-05kqhonrbfog"
+                                    >
+                                      <LinkComponent>
+                                        <LinkComponent href="/" className="flex items...">
+                                          <a
+                                            className="flex items-center gap-2"
+                                            ref={function}
+                                            onClick={function onClick}
+                                            onMouseEnter={function onMouseEnter}
+                                            onTouchStart={function onTouchStart}
+                                            href="/"
+-                                           data-cursor-ref="ref-ojac348l6uo"
+                                          >
+                                      <nav
+                                        className="flex items-center gap-6 text-sm"
+-                                       data-cursor-ref="ref-87a14tchdbr"
+                                      >
+                                        <LinkComponent>
+                                          <LinkComponent href="/" className="text-muted...">
+                                            <a
+                                              className="text-muted-foreground hover:text-foreground transition-colors"
+                                              ref={function}
+                                              onClick={function onClick}
+                                              onMouseEnter={function onMouseEnter}
+                                              onTouchStart={function onTouchStart}
+                                              href="/"
+-                                             data-cursor-ref="ref-5wko9vc9eu7"
+                                            >
++                                             Accueil
+                                        <LinkComponent>
+                                          <LinkComponent href="/proposer-..." className="text-muted...">
+                                            <a
+                                              className="text-muted-foreground hover:text-foreground transition-colors"
+                                              ref={function}
+                                              onClick={function onClick}
+                                              onMouseEnter={function onMouseEnter}
+                                              onTouchStart={function onTouchStart}
+                                              href="/proposer-un-besoin"
+-                                             data-cursor-ref="ref-g5ok4y2gbz"
+                                            >
++                                             Proposer un besoin
+                                      <div
+                                        className="flex items-center gap-4"
+-                                       data-cursor-ref="ref-6mwmi8tztio"
+                                      >
+                                        <a
+                                          href="https://facebook.com"
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          className="text-muted-foreground hover:text-primary transition-colors"
+                                          aria-label="Facebook"
+-                                         data-cursor-ref="ref-h6ikbzsykdl"
+                                        >
+                                        <a
+                                          href="https://instagram.com"
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          className="text-muted-foreground hover:text-primary transition-colors"
+                                          aria-label="Instagram"
+-                                         data-cursor-ref="ref-6sa5r4gnn2k"
+                                        >
+                                    ...
+                        ...
+                      ...
+          ...
+
+[00:01:14.608] Server  LOG     ○ Compiling /api/auth/[...all] ...
+[00:01:52.111] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:26.180] Server  LOG     ✓ Finished writing to filesystem cache in 77s
+[00:03:02.094] Server  LOG     ○ Compiling /signin ...
+[00:03:59.468] Server  LOG     ✓ Finished writing to filesystem cache in 97s
+[00:04:22.813] Server  LOG     ✓ Finished filesystem cache database compaction in 15.8s
+[00:04:26.948] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:28.807] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <RenderFromTemplateContext>
+      <ScrollAndFocusHandler segmentPath={[...]}>
+        <InnerScrollAndFocusHandler segmentPath={[...]} focusAndScrollRef={{apply:false, ...}}>
+          <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+            <LoadingBoundary name="signin/" loading={null}>
+              <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
+                <RedirectBoundary>
+                  <RedirectErrorBoundary router={{...}}>
+                    <InnerLayoutRouter url="/signin" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} ...>
+                      <SegmentViewNode type="page" pagePath="(routes)/(...">
+                        <SegmentTrieNode>
+                        <SignInPage>
+                          <div className="flex min-h...">
+                            <div>
+                            <div className="relative z...">
+                              <LinkComponent>
+                              <h1>
+                              <p>
+                              ...
+                                <form onSubmit={function} className="z-50 flex ...">
+                                  ...
+                                    <Controller control={{...}} name="username" render={function render}>
+                                      <FormItem>
+                                        <div
+                                          data-slot="form-item"
+                                          className="grid gap-2"
+-                                         data-cursor-ref="ref-71a872zim4r"
+                                        >
+                                          <FormControl>
+                                            <Slot.Slot data-slot="form-control" id="_R_cklritp..." ...>
+                                              <Slot.SlotClone data-slot="form-control" id="_R_cklritp..." ...>
+                                                <InputStartIcon icon={{...}} data-slot="form-control" id="_R_cklritp..." ...>
+                                                  <div
+                                                    className="space-y-2"
+-                                                   data-cursor-ref="ref-s5qn8wdsct"
+                                                  >
+                                                    <div
+                                                      className="relative"
+-                                                     data-cursor-ref="ref-lvj1mocmea"
+                                                    >
+                                                      <Input placeholder={"Nom d'ut..."} className="peer ps-9 ..." ...>
+                                                        <input
+                                                          type={undefined}
+                                                          data-slot="input"
+                                                          className="border-input file:text-foreground placeholder:tex..."
+                                                          placeholder={"Nom d'utilisateur"}
+                                                          disabled={false}
+                                                          name="username"
+                                                          value=""
+                                                          onChange={function useController.useCallback[onChange]}
+                                                          onBlur={function useController.useCallback[onBlur]}
+                                                          ref={function useController.useCallback[ref]}
+-                                                         data-cursor-ref="ref-4cocofp3o58"
+                                                        >
+                                                      ...
+                                          ...
+                                  ...
+                                    <Controller control={{...}} name="password" render={function render}>
+                                      <FormItem>
+                                        <div
+                                          data-slot="form-item"
+                                          className="grid gap-2"
+-                                         data-cursor-ref="ref-tlvo3fkl9c"
+                                        >
+                                          <FormControl>
+                                            <Slot.Slot data-slot="form-control" id="_R_kklritp..." ...>
+                                              <Slot.SlotClone data-slot="form-control" id="_R_kklritp..." ...>
+                                                <InputPasswordContainer data-slot="form-control" id="_R_kklritp..." ...>
+                                                  <div
+                                                    className="space-y-2"
+-                                                   data-cursor-ref="ref-ehlukxr6e06"
+                                                  >
+                                                    <div
+                                                      className="relative"
+-                                                     data-cursor-ref="ref-ijv6ojdbmvh"
+                                                    >
+                                                      <Input id="input-23" className="pe-9 h-12 ..." ...>
+                                                        <input
+                                                          type="password"
+                                                          data-slot="input"
+                                                          className="border-input file:text-foreground placeholder:tex..."
+                                                          id="input-23"
+                                                          placeholder="Mot de passe"
+                                                          disabled={false}
+                                                          name="password"
+                                                          value=""
+                                                          onChange={function useController.useCallback[onChange]}
+                                                          onBlur={function useController.useCallback[onBlur]}
+                                                          ref={function useController.useCallback[ref]}
+-                                                         data-cursor-ref="ref-uo3nquqzysr"
+                                                        >
+                                                      <button
+                                                        className="absolute inset-y-0 end-0 flex h-full w-9 items-cent..."
+                                                        type="button"
+                                                        onClick={function toggleVisibility}
+                                                        aria-label="Show password"
+                                                        aria-pressed={false}
+-                                                       data-cursor-ref="ref-0bmj2cunjkuu"
+                                                      >
+                                          ...
+                                  <Button type="submit" disabled={false} className="mt-4 w-ful...">
+                                    <button
+                                      data-slot="button"
+                                      className={"inline-flex items-center justify-center gap-2 whitespace-nowrap tex..."}
+                                      type="submit"
+                                      disabled={false}
+-                                     data-cursor-ref="ref-5fy681xx7rh"
+                                    >
++                                     Se connecter
+                              <div
+                                className="flex items-center justify-center gap-2 mt-4"
+-                               data-cursor-ref="ref-a5pxo2w3g0t"
+                              >
+                                <small
+                                  className="text-muted-foreground"
+-                                 data-cursor-ref="ref-41bvbl3ar5n"
+                                >
++                                 Pas encore de compte?
+                                <LinkComponent>
+                                  <LinkComponent href="/signup" className="text-sm fo...">
+                                    <a
+                                      className="text-sm font-bold leading-none text-primary hover:text-primary/80 tra..."
+                                      ref={function}
+                                      onClick={function onClick}
+                                      onMouseEnter={function onMouseEnter}
+                                      onTouchStart={function onTouchStart}
+                                      href="/signup"
+-                                     data-cursor-ref="ref-b823n7v0vs7"
+                                    >
++                                     {"S'inscrire"}
+                      ...
+                    ...
+          ...
+
+[00:05:14.371] Server  LOG     ○ Compiling /mon-espace ...
+[00:05:17.639] Server  LOG     ✓ Finished writing to filesystem cache in 63s
+[00:05:57.080] Server  LOG     ✓ Finished writing to filesystem cache in 22.4s
+[00:06:12.351] Server  LOG     ✓ Finished filesystem cache database compaction in 15.3s
+[00:06:16.193] Server  LOG     ✓ Finished writing to filesystem cache in 17.3s
+[00:07:47.784] Server  LOG     ○ Compiling /proposer-un-besoin ...
+[00:08:33.778] Server  LOG     ✓ Finished writing to filesystem cache in 22.9s
+[00:08:46.719] Server  LOG     ✓ Finished writing to filesystem cache in 11.1s
+[00:09:00.574] Server  LOG     ✓ Finished filesystem cache database compaction in 13.9s
+[00:11:40.334] Server  LOG     ○ Compiling /signup ...
+[00:12:11.708] Server  LOG     ✓ Finished writing to filesystem cache in 15.7s
+[00:13:00.180] Browser LOG     submit data: {"confirmPassword":"Sara@2004","email":"sara@gmail.com","gender":true,"name":"sara handiz","password":"Sara@2004","username":"saraha"}
+[00:13:19.430] Server  LOG     ○ Compiling /besoins/[id] ...
+[00:13:42.882] Server  LOG     ✓ Finished writing to filesystem cache in 10.2s
+[00:14:07.308] Server  LOG     ✓ Finished filesystem cache database compaction in 18.5s

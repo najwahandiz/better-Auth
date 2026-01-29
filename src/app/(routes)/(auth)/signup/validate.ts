@@ -5,32 +5,38 @@ import { z } from "zod";
 export const SignUpSchema = z
   .object({
     email: z
-    .email({ message: "Invalid email address" })
-    .min(1, { message: "Email is required" }),
-    name: z.string().min(4, { message: "Must be at least 4 characters" }),
+      .string()
+      .min(1, { message: "L'email est requis" })
+      .email({ message: "Adresse email invalide" }),
+    name: z
+      .string()
+      .min(4, { message: "Le nom doit contenir au moins 4 caractères" }),
     username: z
-    .string()
-    .min(4, { message: "Must be at least 4 characters" })
-    .regex(/^[a-zA-Z0-9]+$/, "Only letters and numbers allowed")
-    .refine(
-      (username) => {
-        for (const pattern of restrictedUsernames) {
-          if (username.toLowerCase().includes(pattern)) {
-            return false;
+      .string()
+      .min(4, { message: "Le nom d'utilisateur doit contenir au moins 4 caractères" })
+      .max(10, { message: "Le nom d'utilisateur ne peut pas dépasser 10 caractères" })
+      .regex(/^[a-zA-Z0-9]+$/, "Seuls les lettres et chiffres sont autorisés")
+      .refine(
+        (username) => {
+          for (const pattern of restrictedUsernames) {
+            if (username.toLowerCase().includes(pattern)) {
+              return false;
+            }
           }
-        }
-        return true;
-      },
-      { message: "Username contains disallowed words" }
-    ),
+          return true;
+        },
+        { message: "Ce nom d'utilisateur n'est pas autorisé" }
+      ),
     password: passwordSchema,
     confirmPassword: z.string().min(8, {
-      message: "Must be at least 8 characters",
+      message: "La confirmation doit contenir au moins 8 caractères",
     }),
-    gender: z.boolean().nonoptional(),
+    gender: z.boolean({
+      required_error: "Veuillez sélectionner votre genre",
+    }),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords don't match",
+    message: "Les mots de passe ne correspondent pas",
     path: ["confirmPassword"],
   });
 

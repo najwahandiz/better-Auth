@@ -19,7 +19,7 @@ import { SignInSchema, SignInValues } from "./validate";
 import InputStartIcon from "../components/input-start-icon";
 import InputPasswordContainer from "../components/input-password";
 import { cn } from "@/lib/utils";
-import { AtSign } from "lucide-react";
+import { AtSign, Loader2 } from "lucide-react";
 
 export default function SignInForm() {
   const [isPending, startTransition] = useTransition();
@@ -41,6 +41,7 @@ export default function SignInForm() {
         console.log("SIGN_IN:", response.error.message);
         toast.error(response.error.message);
       } else {
+        toast.success("Connexion réussie!");
         router.push("/");
       }
     });
@@ -56,7 +57,7 @@ export default function SignInForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="z-50 my-8 flex w-full flex-col gap-5"
+        className="z-50 flex w-full flex-col gap-4"
       >
         <FormField
           control={form.control}
@@ -66,8 +67,8 @@ export default function SignInForm() {
               <FormControl>
                 <InputStartIcon icon={AtSign}>
                   <Input
-                    placeholder="Username"
-                    className={cn("peer ps-9", getInputClassName("username"))}
+                    placeholder="Nom d'utilisateur"
+                    className={cn("peer ps-9 h-12 rounded-xl", getInputClassName("username"))}
                     disabled={isPending}
                     {...field}
                   />
@@ -87,8 +88,8 @@ export default function SignInForm() {
                 <InputPasswordContainer>
                   <Input
                     id="input-23"
-                    className={cn("pe-9", getInputClassName("password"))}
-                    placeholder="Password"
+                    className={cn("pe-9 h-12 rounded-xl", getInputClassName("password"))}
+                    placeholder="Mot de passe"
                     disabled={isPending}
                     {...field}
                   />
@@ -98,8 +99,19 @@ export default function SignInForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" disabled={isPending} className="mt-5 w-full">
-          Sign In
+        <Button 
+          type="submit" 
+          disabled={isPending} 
+          className="mt-4 w-full h-12 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
+        >
+          {isPending ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Connexion...
+            </>
+          ) : (
+            "Se connecter"
+          )}
         </Button>
       </form>
     </Form>

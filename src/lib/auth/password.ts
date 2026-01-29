@@ -1,19 +1,19 @@
-import z from "zod/v4";
+import { z } from "zod";
 
 export const passwordSchema = z
   .string()
   .min(8, {
-    message: "Password must be at least 8 characters long.",
+    message: "Le mot de passe doit contenir au moins 8 caractères",
   })
   .regex(/[A-Z]/, {
-    message: "Password must contain at least one uppercase letter.",
+    message: "Le mot de passe doit contenir au moins une majuscule",
   })
   .regex(/[a-z]/, {
-    message: "Password must contain at least one lowercase letter.",
+    message: "Le mot de passe doit contenir au moins une minuscule",
   })
   .regex(/[0-9]/, {
-    message: "Password must contain at least one number.",
+    message: "Le mot de passe doit contenir au moins un chiffre",
   })
   .regex(/[^A-Za-z0-9]/, {
-    message: "Password must contain at least one symbol.",
+    message: "Le mot de passe doit contenir au moins un symbole (!@#$...)",
   });

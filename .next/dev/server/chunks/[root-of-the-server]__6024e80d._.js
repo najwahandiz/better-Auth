@@ -51,17 +51,24 @@ __turbopack_context__.s([
     ()=>apiAuthPrefix,
     "authRoutes",
     ()=>authRoutes,
+    "protectedRoutes",
+    ()=>protectedRoutes,
     "publicRoutes",
     ()=>publicRoutes
 ]);
 const publicRoutes = [
     "/",
-    "/about"
+    "/about",
+    "/besoins"
 ];
 const authRoutes = [
     "/signin",
     "/signup",
     "/forgot-password"
+];
+const protectedRoutes = [
+    "/proposer-un-besoin",
+    "/mon-espace"
 ];
 const apiAuthPrefix = "/api/auth";
 const DEFAULT_LOGIN_REDIRECT = "/";
@@ -77,17 +84,22 @@ __turbopack_context__.s([
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/server.js [middleware] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$better$2d$auth$2f$dist$2f$cookies$2f$index$2e$mjs__$5b$middleware$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/better-auth/dist/cookies/index.mjs [middleware] (ecmascript) <locals>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$better$2d$auth$2f$dist$2f$shared$2f$better$2d$auth$2e$D9_vQR83$2e$mjs__$5b$middleware$5d$__$28$ecmascript$29$__$3c$export__b__as__getSessionCookie$3e$__ = __turbopack_context__.i("[project]/node_modules/better-auth/dist/shared/better-auth.D9_vQR83.mjs [middleware] (ecmascript) <export b as getSessionCookie>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$routes$2e$ts__$5b$middleware$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/routes.ts [middleware] (ecmascript)");
 ;
 ;
 ;
+// Routes publiques qui acceptent des paramètres dynamiques (ex: /besoins/1)
+const publicRoutePrefixes = [
+    "/besoins"
+];
 async function proxy(request) {
-    const session = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$better$2d$auth$2f$dist$2f$shared$2f$better$2d$auth$2e$D9_vQR83$2e$mjs__$5b$middleware$5d$__$28$ecmascript$29$__$3c$export__b__as__getSessionCookie$3e$__["getSessionCookie"])(request);
-    const isApiAuth = request.nextUrl.pathname.startsWith(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$routes$2e$ts__$5b$middleware$5d$__$28$ecmascript$29$__["apiAuthPrefix"]);
-    const isPublicRoute = __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$routes$2e$ts__$5b$middleware$5d$__$28$ecmascript$29$__["publicRoutes"].includes(request.nextUrl.pathname);
+    const session = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$better$2d$auth$2f$dist$2f$cookies$2f$index$2e$mjs__$5b$middleware$5d$__$28$ecmascript$29$__$3c$locals$3e$__["getSessionCookie"])(request);
+    const pathname = request.nextUrl.pathname;
+    const isApiAuth = pathname.startsWith(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$routes$2e$ts__$5b$middleware$5d$__$28$ecmascript$29$__["apiAuthPrefix"]);
+    // Vérifie si c'est une route publique exacte ou une route avec préfixe public
+    const isPublicRoute = __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$routes$2e$ts__$5b$middleware$5d$__$28$ecmascript$29$__["publicRoutes"].includes(pathname) || publicRoutePrefixes.some((prefix)=>pathname.startsWith(prefix));
     const isAuthRoute = ()=>{
-        return __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$routes$2e$ts__$5b$middleware$5d$__$28$ecmascript$29$__["authRoutes"].some((path)=>request.nextUrl.pathname.startsWith(path));
+        return __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$routes$2e$ts__$5b$middleware$5d$__$28$ecmascript$29$__["authRoutes"].some((path)=>pathname.startsWith(path));
     };
     if (isApiAuth) {
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].next();
@@ -99,7 +111,7 @@ async function proxy(request) {
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].next();
     }
     if (!session && !isPublicRoute) {
-        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL("/login", request.url));
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL("/signin", request.url));
     }
     return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].next();
 }

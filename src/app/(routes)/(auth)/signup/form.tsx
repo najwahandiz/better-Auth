@@ -20,7 +20,7 @@ import { SignUpSchema, SignUpValues } from "./validate";
 import InputStartIcon from "../components/input-start-icon";
 import InputPasswordContainer from "../components/input-password";
 import { cn } from "@/lib/utils";
-import { AtSign, MailIcon, UserIcon } from "lucide-react";
+import { AtSign, MailIcon, UserIcon, Loader2 } from "lucide-react";
 import { GenderRadioGroup } from "../components/gender-radio-group";
 
 export default function SignUpForm() {
@@ -46,6 +46,7 @@ export default function SignUpForm() {
         console.log("SIGN_UP:", response.error.status);
         toast.error(response.error.message);
       } else {
+        toast.success("Inscription réussie! Bienvenue sur Dir-Khir");
         redirect("/");
       }
     });
@@ -61,7 +62,7 @@ export default function SignUpForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="z-50 my-8 flex w-full flex-col gap-5"
+        className="z-50 flex w-full flex-col gap-4"
       >
         <FormField
           control={form.control}
@@ -71,8 +72,8 @@ export default function SignUpForm() {
               <FormControl>
                 <InputStartIcon icon={UserIcon}>
                   <Input
-                    placeholder="Name"
-                    className={cn("peer ps-9", getInputClassName("name"))}
+                    placeholder="Nom complet"
+                    className={cn("peer ps-9 h-12 rounded-xl", getInputClassName("name"))}
                     disabled={isPending}
                     {...field}
                   />
@@ -91,7 +92,7 @@ export default function SignUpForm() {
                 <InputStartIcon icon={MailIcon}>
                   <Input
                     placeholder="Email"
-                    className={cn("peer ps-9", getInputClassName("email"))}
+                    className={cn("peer ps-9 h-12 rounded-xl", getInputClassName("email"))}
                     disabled={isPending}
                     {...field}
                   />
@@ -110,8 +111,8 @@ export default function SignUpForm() {
               <FormControl>
                 <InputStartIcon icon={AtSign}>
                   <Input
-                    placeholder="Username"
-                    className={cn("peer ps-9", getInputClassName("username"))}
+                    placeholder="Nom d'utilisateur"
+                    className={cn("peer ps-9 h-12 rounded-xl", getInputClassName("username"))}
                     disabled={isPending}
                     {...field}
                   />
@@ -130,8 +131,8 @@ export default function SignUpForm() {
               <FormControl>
                 <InputPasswordContainer>
                   <Input
-                    className={cn("pe-9", getInputClassName("password"))}
-                    placeholder="Password"
+                    className={cn("pe-9 h-12 rounded-xl", getInputClassName("password"))}
+                    placeholder="Mot de passe"
                     disabled={isPending}
                     {...field}
                   />
@@ -150,8 +151,8 @@ export default function SignUpForm() {
               <FormControl>
                 <InputPasswordContainer>
                   <Input
-                    className={cn("pe-9", getInputClassName("confirmPassword"))}
-                    placeholder="Confirm Password"
+                    className={cn("pe-9 h-12 rounded-xl", getInputClassName("confirmPassword"))}
+                    placeholder="Confirmer le mot de passe"
                     disabled={isPending}
                     {...field}
                   />
@@ -168,7 +169,7 @@ export default function SignUpForm() {
           name="gender"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Gender</FormLabel>
+              <FormLabel className="text-foreground">Genre</FormLabel>
               <GenderRadioGroup
                 value={field.value}
                 onChange={field.onChange}
@@ -178,8 +179,19 @@ export default function SignUpForm() {
           )}
         />
 
-        <Button type="submit" disabled={isPending} className="mt-5 w-full">
-          Sign Up
+        <Button 
+          type="submit" 
+          disabled={isPending} 
+          className="mt-4 w-full h-12 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
+        >
+          {isPending ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Inscription...
+            </>
+          ) : (
+            "S'inscrire"
+          )}
         </Button>
       </form>
     </Form>

@@ -8,15 +8,22 @@ import {
   publicRoutes,
 } from "./routes";
 
+// Routes publiques qui acceptent des paramètres dynamiques (ex: /besoins/1)
+const publicRoutePrefixes = ["/besoins"];
+
 export async function proxy(request: NextRequest) {
   const session = getSessionCookie(request);
+  const pathname = request.nextUrl.pathname;
 
-  const isApiAuth = request.nextUrl.pathname.startsWith(apiAuthPrefix);
+  const isApiAuth = pathname.startsWith(apiAuthPrefix);
 
-  const isPublicRoute = publicRoutes.includes(request.nextUrl.pathname);
+  // Vérifie si c'est une route publique exacte ou une route avec préfixe public
+  const isPublicRoute = 
+    publicRoutes.includes(pathname) ||
+    publicRoutePrefixes.some((prefix) => pathname.startsWith(prefix));
 
   const isAuthRoute = () => {
-    return authRoutes.some((path) => request.nextUrl.pathname.startsWith(path));
+    return authRoutes.some((path) => pathname.startsWith(path));
   };
 
   if (isApiAuth) {
@@ -33,7 +40,7 @@ export async function proxy(request: NextRequest) {
   }
 
   if (!session && !isPublicRoute) {
-    return NextResponse.redirect(new URL("/login", request.url));
+    return NextResponse.redirect(new URL("/signin", request.url));
   }
 
   return NextResponse.next();
