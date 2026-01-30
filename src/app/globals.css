@@ -5,50 +5,51 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
 }
 
 :root {
-  /* Moroccan Theme Colors - Dir-Khir */
-  --background: #FAF7F5;
-  --foreground: #2D2A26;
+  /* Premium Neo-Moroccan Theme - Dir-Khir */
+  /* Apple-level cleanliness meets modern Moroccan aesthetics */
+  --background: #FDFCF7; /* Warm Sand */
+  --foreground: #1A1A1A;
   --card: #FFFFFF;
-  --card-foreground: #2D2A26;
+  --card-foreground: #1A1A1A;
   --popover: #FFFFFF;
-  --popover-foreground: #2D2A26;
-  --primary: #A0522D;
+  --popover-foreground: #1A1A1A;
+  --primary: #064E3B; /* Deep Emerald */
   --primary-foreground: #FFFFFF;
-  --secondary: #50C878;
+  --secondary: #F59E0B; /* Subtle Saffron */
   --secondary-foreground: #FFFFFF;
-  --muted: #F5F0EB;
-  --muted-foreground: #6B6560;
-  --accent: #6050DC;
+  --muted: #F5F3F0;
+  --muted-foreground: #6B6B6B;
+  --accent: #F59E0B; /* Saffron for CTAs */
   --accent-foreground: #FFFFFF;
   --destructive: #DC2626;
   --destructive-foreground: #FFFFFF;
-  --border: #E8E2DB;
-  --input: #E8E2DB;
-  --ring: #A0522D;
-  --chart-1: #A0522D;
-  --chart-2: #50C878;
-  --chart-3: #6050DC;
+  --border: #E8E6E1;
+  --input: #E8E6E1;
+  --ring: #064E3B;
+  --chart-1: #064E3B;
+  --chart-2: #F59E0B;
+  --chart-3: #065F46;
   --chart-4: #F59E0B;
   --chart-5: #EC4899;
-  --radius: 1rem;
-  --sidebar: #FAF7F5;
-  --sidebar-foreground: #2D2A26;
-  --sidebar-primary: #A0522D;
+  --radius: 0.75rem;
+  --sidebar: #FDFCF7;
+  --sidebar-foreground: #1A1A1A;
+  --sidebar-primary: #064E3B;
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #F5F0EB;
-  --sidebar-accent-foreground: #2D2A26;
-  --sidebar-border: #E8E2DB;
-  --sidebar-ring: #A0522D;
+  --sidebar-accent: #F5F3F0;
+  --sidebar-accent-foreground: #1A1A1A;
+  --sidebar-border: #E8E6E1;
+  --sidebar-ring: #064E3B;
   /* Custom Dir-Khir colors */
   --whatsapp: #25D366;
-  --sienna: #A0522D;
-  --emerald: #50C878;
-  --majorelle: #6050DC;
+  --emerald: #064E3B;
+  --saffron: #F59E0B;
+  --sand: #FDFCF7;
 }
 
 .dark {
@@ -156,5 +157,11 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-body), system-ui, sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading), serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
   }
 }

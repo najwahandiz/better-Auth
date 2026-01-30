@@ -14,17 +14,19 @@ export function StatusBadge({ status, className }: StatusBadgeProps) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium",
-        isOpen ? "bg-secondary/20 text-secondary" : "bg-gray-100 text-gray-500",
+        "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold",
+        isOpen 
+          ? "bg-[#064E3B]/10 text-[#064E3B] border border-[#064E3B]/20" 
+          : "bg-muted text-muted-foreground border border-border",
         className
       )}
     >
       {isOpen ? (
-        <CheckCircle className="w-3 h-3" />
+        <CheckCircle className="w-3.5 h-3.5" />
       ) : (
-        <Circle className="w-3 h-3" />
+        <Circle className="w-3.5 h-3.5" />
       )}
-      {isOpen ? "Ouvert" : "Complet"}
+      {isOpen ? "Ouvert" : "Résolu"}
     </span>
   )
 }

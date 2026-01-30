@@ -6,7 +6,7 @@ import { auth } from "@/lib/auth/server";
 import { db } from "@/db";
 import { besoin, participation } from "@/db/schema/besoin";
 import { user } from "@/db/schema/auth";
-import { eq, and, desc } from "drizzle-orm";
+import { eq, and, desc, sql, count } from "drizzle-orm";
 import {
   CreateBesoinSchema,
   type CreateBesoinValues,
@@ -170,21 +170,126 @@ export async function markAsResolved(besoinId: string) {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// 4️⃣ RÉCUPÉRER TOUS LES BESOINS (pour la page d'accueil)
+// 4️⃣ RÉCUPÉRER TOUS LES BESOINS (pour la page d'accueil) avec filtres et pagination
 // ════════════════════════════════════════════════════════════════════════════
-export async function getAllBesoins() {
-  try {
-    const besoins = await db.query.besoin.findMany({
-      orderBy: [desc(besoin.createdAt)],
-      with: {
-        user: true,
-      },
-    });
+interface GetAllBesoinsParams {
+  city?: string;
+  category?: string;
+  page?: number;
+  limit?: number;
+}
 
-    return { success: true, besoins };
+export async function getAllBesoins(params: GetAllBesoinsParams = {}) {
+  try {
+    const {
+      city,
+      category,
+      page = 1,
+      limit = 12, // Default: 12 items per page
+    } = params;
+
+    // Build where conditions
+    const conditions = [];
+    if (city && city !== "all") {
+      conditions.push(eq(besoin.city, city));
+    }
+    if (category && category !== "all") {
+      conditions.push(eq(besoin.category, category));
+    }
+
+    const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
+
+    // Calculate pagination
+    const offset = (page - 1) * limit;
+
+    // Get total count for pagination
+    let totalCountQuery;
+    if (whereClause) {
+      totalCountQuery = db
+        .select({ count: count() })
+        .from(besoin)
+        .where(whereClause);
+    } else {
+      totalCountQuery = db
+        .select({ count: count() })
+        .from(besoin);
+    }
+
+    const totalCountResult = await totalCountQuery;
+    const totalCount = Number(totalCountResult[0]?.count || 0);
+    const totalPages = Math.ceil(totalCount / limit);
+
+    // Fetch besoins with pagination and join user data
+    let besoinsQuery;
+    if (whereClause) {
+      besoinsQuery = db
+        .select({
+          besoin: besoin,
+          user: {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            image: user.image,
+          },
+        })
+        .from(besoin)
+        .innerJoin(user, eq(besoin.userId, user.id))
+        .where(whereClause)
+        .orderBy(desc(besoin.createdAt))
+        .limit(limit)
+        .offset(offset);
+    } else {
+      besoinsQuery = db
+        .select({
+          besoin: besoin,
+          user: {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            image: user.image,
+          },
+        })
+        .from(besoin)
+        .innerJoin(user, eq(besoin.userId, user.id))
+        .orderBy(desc(besoin.createdAt))
+        .limit(limit)
+        .offset(offset);
+    }
+
+    const besoinsData = await besoinsQuery;
+
+    // Transform to match expected format
+    const besoins = besoinsData.map((row) => ({
+      ...row.besoin,
+      user: row.user,
+    }));
+
+    return {
+      success: true,
+      besoins,
+      pagination: {
+        page,
+        limit,
+        totalCount,
+        totalPages,
+        hasNextPage: page < totalPages,
+        hasPrevPage: page > 1,
+      },
+    };
   } catch (error) {
     console.error("Error fetching besoins:", error);
-    return { error: "Erreur lors de la récupération des besoins", besoins: [] };
+    return {
+      error: "Erreur lors de la récupération des besoins",
+      besoins: [],
+      pagination: {
+        page: 1,
+        limit: 12,
+        totalCount: 0,
+        totalPages: 0,
+        hasNextPage: false,
+        hasPrevPage: false,
+      },
+    };
   }
 }
 

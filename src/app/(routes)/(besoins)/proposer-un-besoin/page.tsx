@@ -19,7 +19,7 @@ export default async function ProposerBesoinPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Navbar isLoggedIn={true} userName={session.user.name} />
+      <Navbar />
       
       <main className="flex-1 py-12">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -34,7 +34,7 @@ export default async function ProposerBesoinPage() {
           </div>
 
           {/* Form Card */}
-          <div className="bg-card rounded-2xl border border-border p-6 md:p-8 shadow-sm">
+          <div className="bg-card rounded-2xl border border-border/60 p-6 md:p-8 shadow-sm">
             <ProposerBesoinForm />
           </div>
         </div>

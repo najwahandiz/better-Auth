@@ -1,35 +1,7 @@
 {
   "node": {
-    "00fc58b2384eba8a11fd2cd01f3f993534545b88c7": {
-      "workers": {
-        "app/(routes)/(dashboard)/mon-espace/page": {
-          "moduleId": "[project]/.next-internal/server/app/(routes)/(dashboard)/mon-espace/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/lib/actions/besoin.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
-          "async": false,
-          "exportedName": "getAllBesoins",
-          "filename": "src/lib/actions/besoin.ts"
-        },
-        "app/page": {
-          "moduleId": "[project]/.next-internal/server/app/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/lib/actions/besoin.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
-          "async": false,
-          "exportedName": "getAllBesoins",
-          "filename": "src/lib/actions/besoin.ts"
-        }
-      },
-      "layer": {
-        "app/(routes)/(dashboard)/mon-espace/page": "rsc",
-        "app/page": "rsc"
-      },
-      "filename": "src/lib/actions/besoin.ts",
-      "exportedName": "getAllBesoins"
-    },
     "4033a8e7b46ff8dbecb9a1bf6eadd74a05da9050c8": {
       "workers": {
-        "app/(routes)/(besoins)/proposer-un-besoin/page": {
-          "moduleId": "[project]/.next-internal/server/app/(routes)/(besoins)/proposer-un-besoin/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/lib/actions/besoin.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
-          "async": false,
-          "exportedName": "createBesoin",
-          "filename": "src/lib/actions/besoin.ts"
-        },
         "app/(routes)/(dashboard)/mon-espace/page": {
           "moduleId": "[project]/.next-internal/server/app/(routes)/(dashboard)/mon-espace/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/lib/actions/besoin.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
           "async": false,
@@ -44,7 +16,6 @@
         }
       },
       "layer": {
-        "app/(routes)/(besoins)/proposer-un-besoin/page": "action-browser",
         "app/(routes)/(dashboard)/mon-espace/page": "rsc",
         "app/page": "rsc"
       },
@@ -160,6 +131,28 @@
       },
       "filename": "src/lib/actions/besoin.ts",
       "exportedName": "joinNeed"
+    },
+    "40fc58b2384eba8a11fd2cd01f3f993534545b88c7": {
+      "workers": {
+        "app/(routes)/(dashboard)/mon-espace/page": {
+          "moduleId": "[project]/.next-internal/server/app/(routes)/(dashboard)/mon-espace/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/lib/actions/besoin.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getAllBesoins",
+          "filename": "src/lib/actions/besoin.ts"
+        },
+        "app/page": {
+          "moduleId": "[project]/.next-internal/server/app/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/lib/actions/besoin.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getAllBesoins",
+          "filename": "src/lib/actions/besoin.ts"
+        }
+      },
+      "layer": {
+        "app/(routes)/(dashboard)/mon-espace/page": "rsc",
+        "app/page": "rsc"
+      },
+      "filename": "src/lib/actions/besoin.ts",
+      "exportedName": "getAllBesoins"
     }
   },
   "edge": {},

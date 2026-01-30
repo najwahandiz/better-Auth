@@ -8,34 +8,63 @@ export const metadata: Metadata = {
 
 export default function SignInPage() {
   return (
-    <div className="flex min-h-screen w-full flex-col items-center justify-center bg-background relative">
-      {/* Subtle zellige pattern overlay */}
-      <div 
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23A0522D' fillOpacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }}
-      />
-      
-      <div className="relative z-10 flex w-full flex-col rounded-2xl border border-border bg-card px-8 py-8 shadow-lg md:w-[420px]">
-        {/* Logo */}
-        <Link href="/" className="flex items-center justify-center gap-2 mb-6">
-          <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-xl">DK</span>
-          </div>
-          <span className="text-2xl font-bold text-foreground">Dir-Khir</span>
-        </Link>
-        
-        <h1 className="text-2xl font-bold text-center text-foreground mb-2">Se connecter</h1>
-        <p className="text-center text-muted-foreground mb-6">Accédez à votre espace d&apos;entraide</p>
-        
-        <SignInForm />
-        
-        <div className="flex items-center justify-center gap-2 mt-4">
-          <small className="text-muted-foreground">Pas encore de compte?</small>
-          <Link href="/signup" className="text-sm font-bold leading-none text-primary hover:text-primary/80 transition-colors">
-            S&apos;inscrire
+    <div className="flex min-h-screen w-full bg-background">
+      {/* Left Side - Moroccan Architectural Image */}
+      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=1200&q=80&auto=format&fit=crop"
+          alt="Architecture marocaine - Zellige et motifs traditionnels"
+          className="w-full h-full object-cover"
+        />
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#064E3B]/80 via-[#064E3B]/60 to-[#064E3B]/90" />
+        {/* Content overlay */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center p-12 text-white z-10">
+          <Link href="/" className="flex items-center gap-3 mb-8">
+            <div className="w-16 h-16 bg-[#F59E0B] rounded-2xl flex items-center justify-center shadow-lg">
+              <span className="text-white font-bold text-2xl">DK</span>
+            </div>
+            <span className="text-3xl font-bold">Dir-Khir</span>
           </Link>
+          <h2 className="text-4xl font-bold mb-4 text-center">Bienvenue de retour</h2>
+          <p className="text-xl text-white/90 text-center max-w-md">
+            Reconnectez-vous à votre communauté et continuez à faire la différence
+          </p>
+        </div>
+      </div>
+
+      {/* Right Side - Form */}
+      <div className="flex-1 flex items-center justify-center p-6 lg:p-12">
+        <div className="w-full max-w-md">
+          {/* Mobile Logo */}
+          <Link href="/" className="flex items-center justify-center gap-2 mb-8 lg:hidden">
+            <div className="w-12 h-12 bg-[#064E3B] rounded-xl flex items-center justify-center">
+              <span className="text-white font-bold text-xl">DK</span>
+            </div>
+            <span className="text-2xl font-bold text-foreground">Dir-Khir</span>
+          </Link>
+
+          {/* Desktop Logo (hidden on mobile) */}
+          <div className="hidden lg:flex items-center justify-center gap-2 mb-8">
+            <div className="w-12 h-12 bg-[#064E3B] rounded-xl flex items-center justify-center">
+              <span className="text-white font-bold text-xl">DK</span>
+            </div>
+            <span className="text-2xl font-bold text-foreground">Dir-Khir</span>
+          </div>
+          
+          <h1 className="text-3xl font-bold text-center text-foreground mb-2">Se connecter</h1>
+          <p className="text-center text-muted-foreground mb-8">Accédez à votre espace d&apos;entraide</p>
+          
+          <div className="bg-card rounded-2xl border border-border/60 p-8 shadow-sm">
+            <SignInForm />
+            
+            <div className="flex items-center justify-center gap-2 mt-6">
+              <small className="text-muted-foreground">Pas encore de compte?</small>
+              <Link href="/signup" className="text-sm font-semibold leading-none text-[#064E3B] hover:text-[#064E3B]/80 transition-colors">
+                S&apos;inscrire
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </div>

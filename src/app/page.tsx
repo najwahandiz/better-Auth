@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/shared/navbar";
 import { Footer } from "@/components/shared/footer";
@@ -9,16 +10,37 @@ import {
   getUserParticipationIds,
 } from "@/lib/actions/besoin";
 
-export default async function HomePage() {
-  // Récupérer la session côté serveur
+interface HomePageProps {
+  searchParams?: Promise<{
+    city?: string;
+    category?: string;
+    page?: string;
+  }>;
+}
+
+export default async function HomePage({ searchParams }: HomePageProps) {
   const session = await getServerSession();
   const isLoggedIn = !!session?.user;
   const currentUserId = session?.user?.id;
 
-  // Récupérer tous les besoins depuis la DB
-  const { besoins } = await getAllBesoins();
+  const params = searchParams ? await searchParams : {};
+  const city = params.city && params.city !== "all" ? params.city : undefined;
+  const category = params.category && params.category !== "all" ? params.category : undefined;
+  const rawPage = params.page ? parseInt(params.page, 10) : 1;
+  const page = Number.isNaN(rawPage) || rawPage < 1 ? 1 : rawPage;
 
-  // Récupérer les participations de l'utilisateur connecté
+  const result = await getAllBesoins({ city, category, page, limit: 12 });
+
+  const besoins = result.besoins ?? [];
+  const pagination = result.pagination ?? {
+    page: 1,
+    limit: 12,
+    totalCount: 0,
+    totalPages: 0,
+    hasNextPage: false,
+    hasPrevPage: false,
+  };
+
   let userParticipationIds: string[] = [];
   if (currentUserId) {
     userParticipationIds = await getUserParticipationIds(currentUserId);
@@ -30,7 +52,6 @@ export default async function HomePage() {
 
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        {/* Subtle zellige pattern overlay */}
         <div
           className="absolute inset-0 opacity-5"
           style={{
@@ -40,22 +61,15 @@ export default async function HomePage() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <div className="text-center max-w-3xl mx-auto">
-            {/* Logo Title */}
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4">
               <span className="text-primary">Dir</span>-Khir
             </h1>
-
-            {/* Subtitle */}
             <p className="text-xl md:text-2xl text-muted-foreground mb-4">
               L&apos;entraide de quartier, de Tanger à Lagouira
             </p>
-
-            {/* Description */}
             <p className="text-lg text-muted-foreground mb-8">
               Aidez vos voisins, renforcez votre communauté
             </p>
-
-            {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/proposer-un-besoin">
                 <Button
@@ -79,13 +93,16 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Liste des besoins avec filtres (Client Component) */}
-      <NeedsList
-        besoins={besoins || []}
-        isLoggedIn={isLoggedIn}
-        currentUserId={currentUserId}
-        userParticipationIds={userParticipationIds}
-      />
+      <Suspense fallback={<div className="min-h-[200px] flex items-center justify-center text-muted-foreground">Chargement des besoins…</div>}>
+        <NeedsList
+          besoins={besoins}
+          isLoggedIn={isLoggedIn}
+          currentUserId={currentUserId}
+          userParticipationIds={userParticipationIds}
+          pagination={pagination}
+          currentFilters={{ city, category }}
+        />
+      </Suspense>
 
       <Footer />
     </div>

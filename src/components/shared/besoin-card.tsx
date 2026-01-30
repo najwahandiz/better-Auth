@@ -76,10 +76,8 @@ export function BesoinCard({
     }
   };
 
-  // Déterminer l'état du bouton
   const isComplete = status === "complet";
   const showParticipateButton = !isOwner && !isComplete;
-  const canParticipate = isLoggedIn && !localParticipating && !isOwner;
 
   // Format the date
   const formattedDate = new Date(createdAt).toLocaleDateString("fr-FR", {
@@ -88,106 +86,101 @@ export function BesoinCard({
     year: "numeric",
   });
 
+  // Un seul bouton principal par carte (même hauteur de footer partout)
+  const primaryButton = showParticipateButton ? (
+    localParticipating ? (
+      <Button
+        size="sm"
+        className="w-full justify-center bg-secondary/20 text-secondary border border-secondary cursor-default"
+        disabled
+      >
+        <Check className="w-4 h-4 mr-1.5" />
+        Je participe
+      </Button>
+    ) : isLoggedIn ? (
+      <Button
+        size="sm"
+        className="w-full justify-center bg-[#064E3B] hover:bg-[#064E3B]/90 text-white font-semibold"
+        onClick={handleParticipate}
+        disabled={isPending}
+      >
+        {isPending ? (
+          <>
+            <Loader2 className="w-4 h-4 mr-1.5 animate-spin" />
+            En cours...
+          </>
+        ) : (
+          "Je participe"
+        )}
+      </Button>
+    ) : (
+      <Link href="/signin" className="w-full">
+        <Button size="sm" className="w-full justify-center bg-[#064E3B] hover:bg-[#064E3B]/90 text-white font-semibold">
+          Je participe
+        </Button>
+      </Link>
+    )
+  ) : isComplete ? (
+    <Button size="sm" className="w-full justify-center bg-muted text-muted-foreground cursor-not-allowed" disabled>
+      Besoin résolu
+    </Button>
+  ) : isOwner && !isComplete ? (
+    <Link href="/mon-espace" className="w-full">
+      <Button size="sm" variant="outline" className="w-full justify-center border-[#064E3B] text-[#064E3B] hover:bg-[#064E3B]/10 font-semibold">
+        Gérer mon besoin
+      </Button>
+    </Link>
+  ) : null;
+
   return (
-    <Card className="group overflow-hidden transition-all duration-200 hover:shadow-lg hover:-translate-y-1 bg-card border-border">
-      <CardContent className="p-5">
+    <Card className="group relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 bg-card border border-border/50 rounded-xl border-l-4 border-l-[#064E3B] shadow-sm gap-0">
+      <CardContent className="p-4">
         {/* Title */}
-        <h3 className="text-lg font-semibold text-foreground mb-2 line-clamp-2">
+        <h3 className="text-base font-bold text-foreground mb-2 line-clamp-2 leading-tight">
           {title}
         </h3>
 
         {/* User and Date Info */}
-        <div className="flex items-center gap-4 text-xs text-muted-foreground mb-3">
-          <div className="flex items-center gap-1.5">
-            <User className="w-3.5 h-3.5" />
+        <div className="flex items-center gap-3 text-xs text-muted-foreground mb-2">
+          <div className="flex items-center gap-1">
+            <User className="w-3.5 h-3.5 text-[#064E3B]/80" />
             <span>{userName}</span>
           </div>
-          <div className="flex items-center gap-1.5">
-            <Calendar className="w-3.5 h-3.5" />
+          <div className="flex items-center gap-1">
+            <Calendar className="w-3.5 h-3.5 text-[#064E3B]/80" />
             <span>{formattedDate}</span>
           </div>
         </div>
 
         {/* Description */}
-        <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+        <p className="text-muted-foreground text-sm mb-3 line-clamp-2 leading-snug">
           {description}
         </p>
 
         {/* Badges */}
-        <div className="flex flex-wrap items-center gap-2 mb-4">
+        <div className="flex flex-wrap items-center gap-1.5 mb-2">
           <CityBadge city={city} />
           <CategoryBadge category={category} />
           <StatusBadge status={status} />
         </div>
 
         {/* Volunteer Counter */}
-        {localCount > 0 && <VolunteerCounter count={localCount} />}
+        {localCount > 0 && (
+          <div className="mb-1">
+            <VolunteerCounter count={localCount} />
+          </div>
+        )}
       </CardContent>
 
-      <CardFooter className="px-5 pb-5 pt-0 flex gap-3">
-        {/* Bouton de participation conditionnel */}
-        {showParticipateButton && (
-          <>
-            {localParticipating ? (
-              // Utilisateur participe déjà
-              <Button
-                className="flex-1 bg-secondary/20 text-secondary border border-secondary cursor-default"
-                disabled
-              >
-                <Check className="w-4 h-4 mr-2" />
-                Je participe
-              </Button>
-            ) : isLoggedIn ? (
-              // Utilisateur connecté peut participer
-              <Button
-                className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground"
-                onClick={handleParticipate}
-                disabled={isPending}
-              >
-                {isPending ? (
-                  <>
-                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                    En cours...
-                  </>
-                ) : (
-                  "Je participe"
-                )}
-              </Button>
-            ) : (
-              // Visiteur non connecté - afficher bouton qui redirige vers signin
-              <Link href="/signin" className="flex-1">
-                <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
-                  Je participe
-                </Button>
-              </Link>
-            )}
-          </>
+      <CardFooter className="px-4 py-3 min-h-[44px] flex items-center gap-2 border-t border-border/40 bg-muted/30">
+        <div className="flex-1 min-w-0">
+          {primaryButton}
+        </div>
+        {whatsappNumber && (
+          <div className="shrink-0">
+            <WhatsAppButton phoneNumber={whatsappNumber} />
+          </div>
         )}
-
-        {/* Bouton désactivé si le besoin est complet */}
-        {isComplete && (
-          <Button
-            className="flex-1 bg-muted text-muted-foreground cursor-not-allowed"
-            disabled
-          >
-            Besoin résolu
-          </Button>
-        )}
-
-        {/* Message pour le propriétaire */}
-        {isOwner && !isComplete && (
-          <Link href="/mon-espace" className="flex-1">
-            <Button
-              variant="outline"
-              className="w-full border-primary text-primary hover:bg-primary/10"
-            >
-              Gérer mon besoin
-            </Button>
-          </Link>
-        )}
-
-        {/* Bouton WhatsApp */}
-        {whatsappNumber && <WhatsAppButton phoneNumber={whatsappNumber} />}
       </CardFooter>
     </Card>
   );

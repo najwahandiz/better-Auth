@@ -13,38 +13,38 @@ const categoryConfig: Record<Category, CategoryConfig> = {
   nettoyage: {
     label: "Nettoyage",
     icon: Brush,
-    bgColor: "bg-emerald-100",
-    textColor: "text-emerald-700",
+    bgColor: "bg-[#064E3B]/10",
+    textColor: "text-[#064E3B]",
   },
   "aide-scolaire": {
     label: "Aide scolaire",
     icon: BookOpen,
-    bgColor: "bg-blue-100",
+    bgColor: "bg-blue-50",
     textColor: "text-blue-700",
   },
   dons: {
     label: "Dons",
     icon: Gift,
-    bgColor: "bg-pink-100",
+    bgColor: "bg-pink-50",
     textColor: "text-pink-700",
   },
   transport: {
     label: "Transport",
     icon: Car,
-    bgColor: "bg-amber-100",
-    textColor: "text-amber-700",
+    bgColor: "bg-[#F59E0B]/10",
+    textColor: "text-[#F59E0B]",
   },
   bricolage: {
     label: "Bricolage",
     icon: Wrench,
-    bgColor: "bg-orange-100",
+    bgColor: "bg-orange-50",
     textColor: "text-orange-700",
   },
   autre: {
     label: "Autre",
     icon: RefreshCw,
-    bgColor: "bg-gray-100",
-    textColor: "text-gray-700",
+    bgColor: "bg-muted",
+    textColor: "text-muted-foreground",
   },
 }
 
@@ -61,13 +61,14 @@ export function CategoryBadge({ category, className, showIcon = true }: Category
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium",
+        "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border",
         config.bgColor,
         config.textColor,
+        "border-current/20",
         className
       )}
     >
-      {showIcon && <Icon className="w-3 h-3" />}
+      {showIcon && <Icon className="w-3.5 h-3.5" />}
       {config.label}
     </span>
   )

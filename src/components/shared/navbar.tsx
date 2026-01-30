@@ -32,13 +32,13 @@ export function Navbar() {
   }
 
   return (
-    <nav className="sticky top-0 z-50 bg-card/95 backdrop-blur-sm border-b border-border">
+    <nav className="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border/60 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">DK</span>
+          <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+            <div className="w-10 h-10 bg-[#064E3B] rounded-xl flex items-center justify-center shadow-sm">
+              <span className="text-white font-bold text-lg">DK</span>
             </div>
             <span className="text-xl font-bold text-foreground">Dir-Khir</span>
           </Link>
@@ -86,7 +86,7 @@ export function Navbar() {
                   </Button>
                 </Link>
                 <Link href="/signup">
-                  <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                  <Button className="bg-[#064E3B] hover:bg-[#064E3B]/90 text-white font-semibold">
                     S&apos;inscrire
                   </Button>
                 </Link>
@@ -160,7 +160,7 @@ export function Navbar() {
                   </Button>
                 </Link>
                 <Link href="/signup" onClick={() => setMobileMenuOpen(false)}>
-                  <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
+                  <Button className="w-full bg-[#064E3B] hover:bg-[#064E3B]/90 text-white font-semibold">
                     S&apos;inscrire
                   </Button>
                 </Link>

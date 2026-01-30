@@ -209,7 +209,7 @@ export default function ProposerBesoinForm() {
         <Button
           type="submit"
           disabled={isPending}
-          className="w-full h-12 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-base"
+          className="w-full h-12 rounded-xl bg-[#064E3B] hover:bg-[#064E3B]/90 text-white font-semibold text-base"
         >
           {isPending ? (
             <>
