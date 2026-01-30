@@ -1,7 +1,4 @@
 {
-  "/(routes)/(auth)/signin/page": "app/(routes)/(auth)/signin/page.js",
-  "/(routes)/(auth)/signup/page": "app/(routes)/(auth)/signup/page.js",
-  "/(routes)/(besoins)/besoins/[id]/page": "app/(routes)/(besoins)/besoins/[id]/page.js",
   "/(routes)/(besoins)/proposer-un-besoin/page": "app/(routes)/(besoins)/proposer-un-besoin/page.js",
   "/(routes)/(dashboard)/mon-espace/page": "app/(routes)/(dashboard)/mon-espace/page.js",
   "/api/auth/[...all]/route": "app/api/auth/[...all]/route.js",

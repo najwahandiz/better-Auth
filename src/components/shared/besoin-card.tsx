@@ -12,7 +12,7 @@ import { VolunteerCounter } from "./volunteer-counter";
 import { WhatsAppButton } from "./whatsapp-button";
 import { joinNeed } from "@/lib/actions/besoin";
 import { toast } from "sonner";
-import { Check, Loader2 } from "lucide-react";
+import { Check, Loader2, User, Calendar } from "lucide-react";
 import type { Category } from "@/lib/constants/categories";
 
 export interface BesoinCardProps {
@@ -27,6 +27,8 @@ export interface BesoinCardProps {
   isLoggedIn?: boolean;
   isParticipating?: boolean;
   isOwner?: boolean;
+  userName: string;
+  createdAt: Date;
 }
 
 export function BesoinCard({
@@ -41,6 +43,8 @@ export function BesoinCard({
   isLoggedIn = false,
   isParticipating = false,
   isOwner = false,
+  userName,
+  createdAt,
 }: BesoinCardProps) {
   const [isPending, setIsPending] = useState(false);
   const [localParticipating, setLocalParticipating] = useState(isParticipating);
@@ -77,15 +81,32 @@ export function BesoinCard({
   const showParticipateButton = !isOwner && !isComplete;
   const canParticipate = isLoggedIn && !localParticipating && !isOwner;
 
+  // Format the date
+  const formattedDate = new Date(createdAt).toLocaleDateString("fr-FR", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
   return (
     <Card className="group overflow-hidden transition-all duration-200 hover:shadow-lg hover:-translate-y-1 bg-card border-border">
       <CardContent className="p-5">
         {/* Title */}
-        <Link href={`/besoins/${id}`}>
-          <h3 className="text-lg font-semibold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
-            {title}
-          </h3>
-        </Link>
+        <h3 className="text-lg font-semibold text-foreground mb-2 line-clamp-2">
+          {title}
+        </h3>
+
+        {/* User and Date Info */}
+        <div className="flex items-center gap-4 text-xs text-muted-foreground mb-3">
+          <div className="flex items-center gap-1.5">
+            <User className="w-3.5 h-3.5" />
+            <span>{userName}</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <Calendar className="w-3.5 h-3.5" />
+            <span>{formattedDate}</span>
+          </div>
+        </div>
 
         {/* Description */}
         <p className="text-muted-foreground text-sm mb-4 line-clamp-2">

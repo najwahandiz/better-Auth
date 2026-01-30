@@ -70,11 +70,9 @@ export function MesDemandes({ demandes }: MesDemandesProps) {
                 <CardContent className="p-6">
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                     <div className="flex-1">
-                      <Link href={`/besoins/${demande.id}`}>
-                        <h3 className="text-lg font-semibold text-foreground mb-2 hover:text-primary transition-colors">
-                          {demande.title}
-                        </h3>
-                      </Link>
+                      <h3 className="text-lg font-semibold text-foreground mb-2">
+                        {demande.title}
+                      </h3>
                       <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
                         {demande.description}
                       </p>

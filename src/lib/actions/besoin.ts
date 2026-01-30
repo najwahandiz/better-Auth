@@ -116,7 +116,6 @@ export async function joinNeed(besoinId: string) {
     // Revalider les pages
     revalidatePath("/");
     revalidatePath("/mon-espace");
-    revalidatePath(`/besoins/${besoinId}`);
 
     return { success: true };
   } catch (error) {
@@ -162,7 +161,6 @@ export async function markAsResolved(besoinId: string) {
     // Revalider les pages
     revalidatePath("/");
     revalidatePath("/mon-espace");
-    revalidatePath(`/besoins/${besoinId}`);
 
     return { success: true };
   } catch (error) {

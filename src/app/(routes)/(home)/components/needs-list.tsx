@@ -133,6 +133,8 @@ export function NeedsList({
                     isLoggedIn={isLoggedIn}
                     isParticipating={isParticipating}
                     isOwner={isOwner}
+                    userName={need.user.name}
+                    createdAt={need.createdAt}
                   />
                 );
               })}

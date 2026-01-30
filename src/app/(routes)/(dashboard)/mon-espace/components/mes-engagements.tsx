@@ -52,11 +52,9 @@ export function MesEngagements({ participations }: MesEngagementsProps) {
                       </span>
                     </div>
 
-                    <Link href={`/besoins/${engagement.besoin.id}`}>
-                      <h3 className="text-lg font-semibold text-foreground mb-2 hover:text-primary transition-colors">
-                        {engagement.besoin.title}
-                      </h3>
-                    </Link>
+                    <h3 className="text-lg font-semibold text-foreground mb-2">
+                      {engagement.besoin.title}
+                    </h3>
 
                     <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
                       {engagement.besoin.description}

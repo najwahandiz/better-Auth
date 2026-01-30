@@ -1,17 +1,5 @@
 {
   "app": {
-    "[project]/src/app/(routes)/(auth)/signin/page": [
-      "static/media/GeistVF-s.p.4c3c0b96.woff",
-      "static/media/GeistMonoVF-s.p.2cee7d16.woff"
-    ],
-    "[project]/src/app/(routes)/(auth)/signup/page": [
-      "static/media/GeistVF-s.p.4c3c0b96.woff",
-      "static/media/GeistMonoVF-s.p.2cee7d16.woff"
-    ],
-    "[project]/src/app/(routes)/(besoins)/besoins/[id]/page": [
-      "static/media/GeistVF-s.p.4c3c0b96.woff",
-      "static/media/GeistMonoVF-s.p.2cee7d16.woff"
-    ],
     "[project]/src/app/(routes)/(besoins)/proposer-un-besoin/page": [
       "static/media/GeistVF-s.p.4c3c0b96.woff",
       "static/media/GeistMonoVF-s.p.2cee7d16.woff"
